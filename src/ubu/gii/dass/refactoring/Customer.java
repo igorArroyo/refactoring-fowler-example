@@ -41,7 +41,7 @@ public class Customer {
 			// determine amounts for each line
 			thisAmount = each.getCharge();
 			
-			frequentRenterPoints = each.getFrequentRenterPoints();
+			frequentRenterPoints += each.getFrequentRenterPoints();
 			// show figures for this rental
 			result += "\t" + each.getMovie().getTitle() + "\t"
 					+ String.valueOf(thisAmount) + "\n";
@@ -72,8 +72,10 @@ public class Customer {
 		}
 		// add footer lines
 		result += "<P>Amount owed is " + String.valueOf(totalAmount) + "</P>";
-		result += "<P> You earned " + String.valueOf(frequentRenterPoints)
-		+ " frequent renter points </P>";
+		result += "<P>You earned " + String.valueOf(frequentRenterPoints)
+				+ " frequent renter points </P>";
 		return result;
+
+
 		}
 }

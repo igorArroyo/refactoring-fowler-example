@@ -53,6 +53,13 @@ public class VideoClubTest {
 				+ "You earned 4 frequent renter points");
 
 		assertTrue("Calcula mal el alquiler", salidaEsperada.equals(salida));
+		
+		salida = c1.htmlStatement();
+		salidaEsperada = new String("<H1>Rental Record for Manuel"
+				+ "</H1><H2>Sky Captain 15.0</H2><H2>Accion Mutante 2.0</H2>"
+				+ "<H2>Hermano Oso 12.0</H2><P>Amount owed is 29.0</P><P>"
+				+ "You earned 4 frequent renter points </P>");
+		assertTrue("Calcula mal el alquiler salida", salidaEsperada.equals(salida));
 
 	}
 
