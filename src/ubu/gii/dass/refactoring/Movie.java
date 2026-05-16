@@ -15,21 +15,54 @@ public class Movie {
 	public static final int CHILDRENS = 2;
 	public static final int REGULAR = 0;
 	public static final int NEW_RELEASE = 1;
+	
+	public abstract class MoviePrice {
+		public abstract int getPriceCode();
+	}
+	
+	public class NewReleasePrice extends MoviePrice{
+		public int getPriceCode() {
+			return NEW_RELEASE;
+		}
+	}
+	public class ChildrenPrice extends MoviePrice {
+		public int getPriceCode() {
+			return CHILDRENS;
+		}
+	}
+	public class RegularPrice extends MoviePrice {
+		public int getPriceCode() {
+			return REGULAR;
+		}
+	}
+
 
 	private String _title;
-	private int _priceCode;
+	private MoviePrice _priceCode;
 
 	public Movie(String title, int priceCode) {
 		_title = title;
-		_priceCode = priceCode;
+		setPriceCode(priceCode);	
 	}
 
 	public int getPriceCode() {
-		return _priceCode;
+		return _priceCode.getPriceCode();
 	}
 
 	public void setPriceCode(int arg) {
-		_priceCode = arg;
+		switch (arg) {
+		case REGULAR:
+			_priceCode = new RegularPrice();
+			break;
+		case CHILDRENS:
+			_priceCode = new ChildrenPrice();
+			break;
+		case NEW_RELEASE:
+			_priceCode = new NewReleasePrice();
+			break;
+		default:
+			throw new IllegalArgumentException("Código de precio incorrecto");
+	}
 	}
 
 	public String getTitle() {
